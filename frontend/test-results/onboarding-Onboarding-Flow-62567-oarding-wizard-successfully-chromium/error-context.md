@@ -1,0 +1,57 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - alert [ref=e2]
+  - generic [ref=e4]:
+    - generic [ref=e6]:
+      - generic [ref=e7]: Step 1 of 4
+      - button "Skip for now" [ref=e8] [cursor=pointer]
+    - generic [ref=e12]:
+      - generic [ref=e13]:
+        - heading "Any dietary restrictions? 🥗" [level=1] [ref=e14]
+        - paragraph [ref=e15]: Select all that apply. We'll make sure your recipes are safe and delicious.
+      - generic [ref=e16]:
+        - button "🥬 Vegetarian" [ref=e17] [cursor=pointer]:
+          - generic [ref=e18]: 🥬
+          - generic [ref=e19]: Vegetarian
+        - button "🌱 Vegan" [ref=e20] [cursor=pointer]:
+          - generic [ref=e21]: 🌱
+          - generic [ref=e22]: Vegan
+        - button "🌾 Gluten-Free" [ref=e23] [cursor=pointer]:
+          - generic [ref=e24]: 🌾
+          - generic [ref=e25]: Gluten-Free
+        - button "🥛 Dairy-Free" [ref=e26] [cursor=pointer]:
+          - generic [ref=e27]: 🥛
+          - generic [ref=e28]: Dairy-Free
+        - button "🥑 Keto" [ref=e29] [cursor=pointer]:
+          - generic [ref=e30]: 🥑
+          - generic [ref=e31]: Keto
+        - button "🍖 Paleo" [ref=e32] [cursor=pointer]:
+          - generic [ref=e33]: 🍖
+          - generic [ref=e34]: Paleo
+        - button "☪️ Halal" [ref=e35] [cursor=pointer]:
+          - generic [ref=e36]: ☪️
+          - generic [ref=e37]: Halal
+        - button "✡️ Kosher" [ref=e38] [cursor=pointer]:
+          - generic [ref=e39]: ✡️
+          - generic [ref=e40]: Kosher
+        - button "🥜 Nut-Free" [ref=e41] [cursor=pointer]:
+          - generic [ref=e42]: 🥜
+          - generic [ref=e43]: Nut-Free
+        - button "🦐 Shellfish-Free" [ref=e44] [cursor=pointer]:
+          - generic [ref=e45]: 🦐
+          - generic [ref=e46]: Shellfish-Free
+        - button "🧂 Low Sodium" [ref=e47] [cursor=pointer]:
+          - generic [ref=e48]: 🧂
+          - generic [ref=e49]: Low Sodium
+        - button "🍬 Low Sugar" [ref=e50] [cursor=pointer]:
+          - generic [ref=e51]: 🍬
+          - generic [ref=e52]: Low Sugar
+      - generic [ref=e53]:
+        - generic [ref=e54]: Any allergies? (comma-separated)
+        - textbox "e.g., peanuts, shellfish, eggs" [ref=e55]
+    - button "Next" [ref=e57] [cursor=pointer]:
+      - text: Next
+      - img
+```

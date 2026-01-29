@@ -1,0 +1,318 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - alert [ref=e2]
+  - generic [ref=e4]:
+    - banner [ref=e5]:
+      - generic [ref=e9] [cursor=pointer]: S
+      - link [ref=e12] [cursor=pointer]:
+        - /url: /search
+        - img [ref=e13]
+    - generic [ref=e15]:
+      - heading "Good Morning, Sarah! ☀️" [level=1] [ref=e16]:
+        - text: Good Morning,
+        - text: Sarah! ☀️
+      - paragraph [ref=e17]: You're 600 kcal away from your goal.
+    - generic [ref=e22]:
+      - generic [ref=e23]:
+        - img [ref=e24]
+        - generic [ref=e27]:
+          - generic [ref=e28]: Left
+          - generic [ref=e29]: "600"
+          - generic [ref=e30]: kcal
+      - generic [ref=e31]:
+        - generic [ref=e32]:
+          - heading "Daily Macros" [level=3] [ref=e33]
+          - generic [ref=e34]: ✨ On Track
+        - generic [ref=e36]:
+          - generic [ref=e37]: Protein
+          - generic [ref=e38]: 80g left
+        - generic [ref=e42]:
+          - generic [ref=e43]: Carbs
+          - generic [ref=e44]: 120g left
+        - generic [ref=e48]:
+          - generic [ref=e49]: Fat
+          - generic [ref=e50]: 40g left
+    - generic [ref=e54]:
+      - button "For You" [ref=e55] [cursor=pointer]
+      - button "Breakfast" [ref=e56] [cursor=pointer]
+      - button "High Protein" [ref=e57] [cursor=pointer]
+      - button "Under 30m" [ref=e58] [cursor=pointer]
+      - button "Vegan" [ref=e59] [cursor=pointer]
+    - generic [ref=e60]:
+      - link "Avocado & Poached Egg Toast 98% Avocado & Poached Egg Toast 15m 350" [active] [ref=e62] [cursor=pointer]:
+        - /url: /recipe/1
+        - generic [ref=e63]:
+          - generic [ref=e64]:
+            - img "Avocado & Poached Egg Toast" [ref=e65]
+            - generic [ref=e66]:
+              - img [ref=e67]
+              - generic [ref=e69]: 98%
+            - button [ref=e70]:
+              - img [ref=e71]
+          - generic [ref=e73]:
+            - heading "Avocado & Poached Egg Toast" [level=3] [ref=e74]
+            - generic [ref=e75]:
+              - generic [ref=e76]:
+                - img [ref=e77]
+                - generic [ref=e79]: 15m
+              - generic [ref=e81]:
+                - img [ref=e82]
+                - generic [ref=e84]: "350"
+      - link "Superfood Quinoa Power Bowl 92% Superfood Quinoa Power Bowl 25m 420" [ref=e86] [cursor=pointer]:
+        - /url: /recipe/2
+        - generic [ref=e87]:
+          - generic [ref=e88]:
+            - img "Superfood Quinoa Power Bowl" [ref=e89]
+            - generic [ref=e90]:
+              - img [ref=e91]
+              - generic [ref=e93]: 92%
+            - button [ref=e94]:
+              - img [ref=e95]
+          - generic [ref=e97]:
+            - heading "Superfood Quinoa Power Bowl" [level=3] [ref=e98]
+            - generic [ref=e99]:
+              - generic [ref=e100]:
+                - img [ref=e101]
+                - generic [ref=e103]: 25m
+              - generic [ref=e105]:
+                - img [ref=e106]
+                - generic [ref=e108]: "420"
+      - link "Zucchini Noodles with Pesto 88% Zucchini Noodles with Pesto 20m 210" [ref=e110] [cursor=pointer]:
+        - /url: /recipe/3
+        - generic [ref=e111]:
+          - generic [ref=e112]:
+            - img "Zucchini Noodles with Pesto" [ref=e113]
+            - generic [ref=e114]:
+              - img [ref=e115]
+              - generic [ref=e117]: 88%
+            - button [ref=e118]:
+              - img [ref=e119]
+          - generic [ref=e121]:
+            - heading "Zucchini Noodles with Pesto" [level=3] [ref=e122]
+            - generic [ref=e123]:
+              - generic [ref=e124]:
+                - img [ref=e125]
+                - generic [ref=e127]: 20m
+              - generic [ref=e129]:
+                - img [ref=e130]
+                - generic [ref=e132]: "210"
+      - link "Honey Garlic Glazed Salmon 95% Honey Garlic Glazed Salmon 25m 420" [ref=e134] [cursor=pointer]:
+        - /url: /recipe/4
+        - generic [ref=e135]:
+          - generic [ref=e136]:
+            - img "Honey Garlic Glazed Salmon" [ref=e137]
+            - generic [ref=e138]:
+              - img [ref=e139]
+              - generic [ref=e141]: 95%
+            - button [ref=e142]:
+              - img [ref=e143]
+          - generic [ref=e145]:
+            - heading "Honey Garlic Glazed Salmon" [level=3] [ref=e146]
+            - generic [ref=e147]:
+              - generic [ref=e148]:
+                - img [ref=e149]
+                - generic [ref=e151]: 25m
+              - generic [ref=e153]:
+                - img [ref=e154]
+                - generic [ref=e156]: "420"
+      - link "Creamy Chickpea Curry 90% Creamy Chickpea Curry 35m 340" [ref=e158] [cursor=pointer]:
+        - /url: /recipe/5
+        - generic [ref=e159]:
+          - generic [ref=e160]:
+            - img "Creamy Chickpea Curry" [ref=e161]
+            - generic [ref=e162]:
+              - img [ref=e163]
+              - generic [ref=e165]: 90%
+            - button [ref=e166]:
+              - img [ref=e167]
+          - generic [ref=e169]:
+            - heading "Creamy Chickpea Curry" [level=3] [ref=e170]
+            - generic [ref=e171]:
+              - generic [ref=e172]:
+                - img [ref=e173]
+                - generic [ref=e175]: 35m
+              - generic [ref=e177]:
+                - img [ref=e178]
+                - generic [ref=e180]: "340"
+      - link "Fresh Greek Salad 87% Fresh Greek Salad 15m 280" [ref=e182] [cursor=pointer]:
+        - /url: /recipe/6
+        - generic [ref=e183]:
+          - generic [ref=e184]:
+            - img "Fresh Greek Salad" [ref=e185]
+            - generic [ref=e186]:
+              - img [ref=e187]
+              - generic [ref=e189]: 87%
+            - button [ref=e190]:
+              - img [ref=e191]
+          - generic [ref=e193]:
+            - heading "Fresh Greek Salad" [level=3] [ref=e194]
+            - generic [ref=e195]:
+              - generic [ref=e196]:
+                - img [ref=e197]
+                - generic [ref=e199]: 15m
+              - generic [ref=e201]:
+                - img [ref=e202]
+                - generic [ref=e204]: "280"
+      - link "Herb Grilled Chicken 94% Herb Grilled Chicken 30m 380" [ref=e206] [cursor=pointer]:
+        - /url: /recipe/7
+        - generic [ref=e207]:
+          - generic [ref=e208]:
+            - img "Herb Grilled Chicken" [ref=e209]
+            - generic [ref=e210]:
+              - img [ref=e211]
+              - generic [ref=e213]: 94%
+            - button [ref=e214]:
+              - img [ref=e215]
+          - generic [ref=e217]:
+            - heading "Herb Grilled Chicken" [level=3] [ref=e218]
+            - generic [ref=e219]:
+              - generic [ref=e220]:
+                - img [ref=e221]
+                - generic [ref=e223]: 30m
+              - generic [ref=e225]:
+                - img [ref=e226]
+                - generic [ref=e228]: "380"
+      - link "Berry Smoothie Bowl 85% Berry Smoothie Bowl 10m 290" [ref=e230] [cursor=pointer]:
+        - /url: /recipe/8
+        - generic [ref=e231]:
+          - generic [ref=e232]:
+            - img "Berry Smoothie Bowl" [ref=e233]
+            - generic [ref=e234]:
+              - img [ref=e235]
+              - generic [ref=e237]: 85%
+            - button [ref=e238]:
+              - img [ref=e239]
+          - generic [ref=e241]:
+            - heading "Berry Smoothie Bowl" [level=3] [ref=e242]
+            - generic [ref=e243]:
+              - generic [ref=e244]:
+                - img [ref=e245]
+                - generic [ref=e247]: 10m
+              - generic [ref=e249]:
+                - img [ref=e250]
+                - generic [ref=e252]: "290"
+      - link "Asian Shrimp Stir Fry 89% Asian Shrimp Stir Fry 20m 310" [ref=e254] [cursor=pointer]:
+        - /url: /recipe/9
+        - generic [ref=e255]:
+          - generic [ref=e256]:
+            - img "Asian Shrimp Stir Fry" [ref=e257]
+            - generic [ref=e258]:
+              - img [ref=e259]
+              - generic [ref=e261]: 89%
+            - button [ref=e262]:
+              - img [ref=e263]
+          - generic [ref=e265]:
+            - heading "Asian Shrimp Stir Fry" [level=3] [ref=e266]
+            - generic [ref=e267]:
+              - generic [ref=e268]:
+                - img [ref=e269]
+                - generic [ref=e271]: 20m
+              - generic [ref=e273]:
+                - img [ref=e274]
+                - generic [ref=e276]: "310"
+      - link "Rainbow Buddha Bowl 91% Rainbow Buddha Bowl 25m 360" [ref=e278] [cursor=pointer]:
+        - /url: /recipe/10
+        - generic [ref=e279]:
+          - generic [ref=e280]:
+            - img "Rainbow Buddha Bowl" [ref=e281]
+            - generic [ref=e282]:
+              - img [ref=e283]
+              - generic [ref=e285]: 91%
+            - button [ref=e286]:
+              - img [ref=e287]
+          - generic [ref=e289]:
+            - heading "Rainbow Buddha Bowl" [level=3] [ref=e290]
+            - generic [ref=e291]:
+              - generic [ref=e292]:
+                - img [ref=e293]
+                - generic [ref=e295]: 25m
+              - generic [ref=e297]:
+                - img [ref=e298]
+                - generic [ref=e300]: "360"
+      - link "Overnight Oats with Berries 86% Overnight Oats with Berries 5m 320" [ref=e302] [cursor=pointer]:
+        - /url: /recipe/11
+        - generic [ref=e303]:
+          - generic [ref=e304]:
+            - img "Overnight Oats with Berries" [ref=e305]
+            - generic [ref=e306]:
+              - img [ref=e307]
+              - generic [ref=e309]: 86%
+            - button [ref=e310]:
+              - img [ref=e311]
+          - generic [ref=e313]:
+            - heading "Overnight Oats with Berries" [level=3] [ref=e314]
+            - generic [ref=e315]:
+              - generic [ref=e316]:
+                - img [ref=e317]
+                - generic [ref=e319]: 5m
+              - generic [ref=e321]:
+                - img [ref=e322]
+                - generic [ref=e324]: "320"
+      - link "Turkey Stuffed Peppers 93% Turkey Stuffed Peppers 45m 390" [ref=e326] [cursor=pointer]:
+        - /url: /recipe/12
+        - generic [ref=e327]:
+          - generic [ref=e328]:
+            - img "Turkey Stuffed Peppers" [ref=e329]
+            - generic [ref=e330]:
+              - img [ref=e331]
+              - generic [ref=e333]: 93%
+            - button [ref=e334]:
+              - img [ref=e335]
+          - generic [ref=e337]:
+            - heading "Turkey Stuffed Peppers" [level=3] [ref=e338]
+            - generic [ref=e339]:
+              - generic [ref=e340]:
+                - img [ref=e341]
+                - generic [ref=e343]: 45m
+              - generic [ref=e345]:
+                - img [ref=e346]
+                - generic [ref=e348]: "390"
+      - link "Hawaiian Tuna Poke Bowl 88% Hawaiian Tuna Poke Bowl 15m 340" [ref=e350] [cursor=pointer]:
+        - /url: /recipe/13
+        - generic [ref=e351]:
+          - generic [ref=e352]:
+            - img "Hawaiian Tuna Poke Bowl" [ref=e353]
+            - generic [ref=e354]:
+              - img [ref=e355]
+              - generic [ref=e357]: 88%
+            - button [ref=e358]:
+              - img [ref=e359]
+          - generic [ref=e361]:
+            - heading "Hawaiian Tuna Poke Bowl" [level=3] [ref=e362]
+            - generic [ref=e363]:
+              - generic [ref=e364]:
+                - img [ref=e365]
+                - generic [ref=e367]: 15m
+              - generic [ref=e369]:
+                - img [ref=e370]
+                - generic [ref=e372]: "340"
+    - navigation [ref=e373]:
+      - generic [ref=e374]:
+        - link "Home" [ref=e375] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e376]:
+            - img [ref=e379]
+            - generic [ref=e384]: Home
+        - link "Search" [ref=e385] [cursor=pointer]:
+          - /url: /search
+          - generic [ref=e386]:
+            - img [ref=e388]
+            - generic [ref=e391]: Search
+        - link "Plan" [ref=e392] [cursor=pointer]:
+          - /url: /plan
+          - generic [ref=e393]:
+            - img [ref=e395]
+            - generic [ref=e397]: Plan
+        - link "Insights" [ref=e398] [cursor=pointer]:
+          - /url: /insights
+          - generic [ref=e399]:
+            - img [ref=e401]
+            - generic [ref=e403]: Insights
+        - link "Profile" [ref=e404] [cursor=pointer]:
+          - /url: /profile
+          - generic [ref=e405]:
+            - img [ref=e407]
+            - generic [ref=e410]: Profile
+```

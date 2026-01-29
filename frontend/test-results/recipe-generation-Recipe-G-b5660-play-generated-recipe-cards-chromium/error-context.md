@@ -1,0 +1,80 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - alert [ref=e2]
+  - generic [ref=e4]:
+    - banner [ref=e5]:
+      - generic [ref=e7]:
+        - button [ref=e8] [cursor=pointer]:
+          - img [ref=e9]
+        - heading "Generate Recipe" [level=1] [ref=e11]
+    - generic [ref=e12]:
+      - generic [ref=e13]:
+        - heading "Here's what we created! ✨" [level=2] [ref=e14]
+        - button "Regenerate" [ref=e15] [cursor=pointer]:
+          - img [ref=e16]
+          - text: Regenerate
+      - generic [ref=e21]:
+        - generic [ref=e22] [cursor=pointer]:
+          - generic [ref=e23]:
+            - img [ref=e25]
+            - generic [ref=e28]: 95% Match
+          - generic [ref=e29]:
+            - generic [ref=e30]:
+              - heading "Mediterranean Quinoa Bowl" [level=3] [ref=e31]
+              - generic [ref=e32]:
+                - generic [ref=e33]:
+                  - img [ref=e34]
+                  - text: 35 min
+                - generic [ref=e37]:
+                  - img [ref=e38]
+                  - text: 380 kcal
+              - generic [ref=e40]:
+                - generic [ref=e41]: vegetarian
+                - generic [ref=e42]: gluten-free
+            - button [ref=e43]:
+              - img [ref=e45]
+        - generic [ref=e47] [cursor=pointer]:
+          - generic [ref=e48]:
+            - img [ref=e50]
+            - generic [ref=e53]: 88% Match
+          - generic [ref=e54]:
+            - generic [ref=e55]:
+              - heading "Honey Garlic Salmon" [level=3] [ref=e56]
+              - generic [ref=e57]:
+                - generic [ref=e58]:
+                  - img [ref=e59]
+                  - text: 25 min
+                - generic [ref=e62]:
+                  - img [ref=e63]
+                  - text: 420 kcal
+              - generic [ref=e65]:
+                - generic [ref=e66]: high-protein
+                - generic [ref=e67]: dairy-free
+            - button [ref=e68]:
+              - img [ref=e70]
+        - generic [ref=e72] [cursor=pointer]:
+          - generic [ref=e73]:
+            - img [ref=e75]
+            - generic [ref=e78]: 92% Match
+          - generic [ref=e79]:
+            - generic [ref=e80]:
+              - heading "Chickpea Curry" [level=3] [ref=e81]
+              - generic [ref=e82]:
+                - generic [ref=e83]:
+                  - img [ref=e84]
+                  - text: 35 min
+                - generic [ref=e87]:
+                  - img [ref=e88]
+                  - text: 340 kcal
+              - generic [ref=e90]:
+                - generic [ref=e91]: vegan
+                - generic [ref=e92]: dairy-free
+                - generic [ref=e93]: high-fiber
+            - button [ref=e94]:
+              - img [ref=e96]
+      - generic [ref=e98]:
+        - button "Generate More" [ref=e99] [cursor=pointer]
+        - button "Go to Dashboard" [ref=e100] [cursor=pointer]
+```

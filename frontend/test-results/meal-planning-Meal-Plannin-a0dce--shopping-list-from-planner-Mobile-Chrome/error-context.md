@@ -1,0 +1,146 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - alert [ref=e2]
+  - generic [ref=e4]:
+    - banner [ref=e5]:
+      - generic [ref=e6]:
+        - generic [ref=e8]: S
+        - heading "Weekly Planner" [level=2] [ref=e9]
+        - button [ref=e11] [cursor=pointer]:
+          - img [ref=e12]
+      - generic [ref=e15]:
+        - generic [ref=e16]:
+          - paragraph [ref=e17]: October 2023
+          - generic [ref=e18]:
+            - button [ref=e19] [cursor=pointer]:
+              - img [ref=e20]
+            - button [ref=e22] [cursor=pointer]:
+              - img [ref=e23]
+        - generic [ref=e25]:
+          - button "Mon 12" [ref=e26] [cursor=pointer]:
+            - generic [ref=e27]: Mon
+            - generic [ref=e28]: "12"
+          - button "Tue 13" [ref=e29] [cursor=pointer]:
+            - generic [ref=e30]: Tue
+            - generic [ref=e31]: "13"
+          - button "Wed 14" [ref=e32] [cursor=pointer]:
+            - generic [ref=e33]: Wed
+            - generic [ref=e35]: "14"
+          - button "Thu 15" [ref=e36] [cursor=pointer]:
+            - generic [ref=e37]: Thu
+            - generic [ref=e38]: "15"
+          - button "Fri 16" [ref=e39] [cursor=pointer]:
+            - generic [ref=e40]: Fri
+            - generic [ref=e41]: "16"
+          - button "Sat 17" [ref=e42] [cursor=pointer]:
+            - generic [ref=e43]: Sat
+            - generic [ref=e44]: "17"
+          - button "Sun 18" [ref=e45] [cursor=pointer]:
+            - generic [ref=e46]: Sun
+            - generic [ref=e47]: "18"
+      - generic [ref=e49]:
+        - generic [ref=e51]:
+          - generic [ref=e52]:
+            - paragraph [ref=e53]: Calories
+            - paragraph [ref=e54]:
+              - text: 1,850
+              - generic [ref=e55]: / 2,000
+          - paragraph [ref=e56]: 🔥 93%
+        - generic [ref=e59]:
+          - generic [ref=e60]: "Protein: 120g"
+          - generic [ref=e61]: "Carbs: 200g"
+          - generic [ref=e62]: "Fat: 60g"
+    - main [ref=e63]:
+      - generic [ref=e64]:
+        - generic [ref=e65]:
+          - heading "Breakfast" [level=2] [ref=e66]
+          - generic [ref=e67]: 350 kcal
+        - link "Avocado Toast Avocado Toast 10m 350" [ref=e68] [cursor=pointer]:
+          - /url: /recipe/1
+          - generic [ref=e70]:
+            - img "Avocado Toast" [ref=e72]
+            - generic [ref=e73]:
+              - paragraph [ref=e74]: Avocado Toast
+              - generic [ref=e75]:
+                - generic [ref=e76]:
+                  - img [ref=e77]
+                  - text: 10m
+                - generic [ref=e79]:
+                  - img [ref=e80]
+                  - text: "350"
+            - img [ref=e83]
+      - generic [ref=e90]:
+        - generic [ref=e91]:
+          - heading "Lunch" [level=2] [ref=e92]
+          - generic [ref=e93]: 450 kcal
+        - link "Grilled Chicken Salad Grilled Chicken Salad 20m 450" [ref=e94] [cursor=pointer]:
+          - /url: /recipe/2
+          - generic [ref=e96]:
+            - img "Grilled Chicken Salad" [ref=e98]
+            - generic [ref=e99]:
+              - paragraph [ref=e100]: Grilled Chicken Salad
+              - generic [ref=e101]:
+                - generic [ref=e102]:
+                  - img [ref=e103]
+                  - text: 20m
+                - generic [ref=e105]:
+                  - img [ref=e106]
+                  - text: "450"
+            - img [ref=e109]
+      - generic [ref=e116]:
+        - generic [ref=e117]:
+          - heading "Dinner" [level=2] [ref=e118]
+          - generic [ref=e119]: 0 kcal
+        - button "Add Dinner" [ref=e120] [cursor=pointer]:
+          - img [ref=e122]
+          - generic [ref=e124]: Add Dinner
+      - generic [ref=e125]:
+        - generic [ref=e126]:
+          - heading "Snacks" [level=2] [ref=e127]
+          - generic [ref=e128]: 120 kcal
+        - link "Greek Yogurt Greek Yogurt 5m 120" [ref=e129] [cursor=pointer]:
+          - /url: /recipe/3
+          - generic [ref=e131]:
+            - img "Greek Yogurt" [ref=e133]
+            - generic [ref=e134]:
+              - paragraph [ref=e135]: Greek Yogurt
+              - generic [ref=e136]:
+                - generic [ref=e137]:
+                  - img [ref=e138]
+                  - text: 5m
+                - generic [ref=e140]:
+                  - img [ref=e141]
+                  - text: "120"
+            - img [ref=e144]
+    - button [ref=e152] [cursor=pointer]:
+      - img [ref=e153]
+    - navigation [ref=e155]:
+      - generic [ref=e156]:
+        - link "Home" [ref=e157] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e158]:
+            - img [ref=e160]
+            - generic [ref=e163]: Home
+        - link "Search" [ref=e164] [cursor=pointer]:
+          - /url: /search
+          - generic [ref=e165]:
+            - img [ref=e167]
+            - generic [ref=e170]: Search
+        - link "Plan" [ref=e171] [cursor=pointer]:
+          - /url: /plan
+          - generic [ref=e172]:
+            - img [ref=e175]
+            - generic [ref=e179]: Plan
+        - link "Insights" [ref=e180] [cursor=pointer]:
+          - /url: /insights
+          - generic [ref=e181]:
+            - img [ref=e183]
+            - generic [ref=e185]: Insights
+        - link "Profile" [ref=e186] [cursor=pointer]:
+          - /url: /profile
+          - generic [ref=e187]:
+            - img [ref=e189]
+            - generic [ref=e192]: Profile
+```
