@@ -217,7 +217,7 @@ export default function ProfilePageContent() {
                             <NutritionRing
                                 value={dailyNutrition.calories.current}
                                 max={dailyNutrition.calories.target}
-                                color="#10b981"
+                                color="calories"
                                 label="Cal"
                             />
                         </div>
@@ -225,7 +225,7 @@ export default function ProfilePageContent() {
                             <NutritionRing
                                 value={dailyNutrition.protein.current}
                                 max={dailyNutrition.protein.target}
-                                color="#3b82f6"
+                                color="protein"
                                 label="Protein"
                                 unit="g"
                             />
@@ -234,7 +234,7 @@ export default function ProfilePageContent() {
                             <NutritionRing
                                 value={dailyNutrition.carbs.current}
                                 max={dailyNutrition.carbs.target}
-                                color="#f59e0b"
+                                color="carbs"
                                 label="Carbs"
                                 unit="g"
                             />
@@ -243,7 +243,7 @@ export default function ProfilePageContent() {
                             <NutritionRing
                                 value={dailyNutrition.fat.current}
                                 max={dailyNutrition.fat.target}
-                                color="#ef4444"
+                                color="fat"
                                 label="Fat"
                                 unit="g"
                             />
