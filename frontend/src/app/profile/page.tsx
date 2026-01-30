@@ -1,5 +1,8 @@
 "use client";
 
+// Force dynamic rendering - this page uses useTheme which requires the ThemeProvider
+export const dynamic = 'force-dynamic';
+
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { motion } from "framer-motion";
