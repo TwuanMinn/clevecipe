@@ -77,6 +77,7 @@ interface MealPlanStore {
     setMeal: (date: string, mealType: 'breakfast' | 'lunch' | 'dinner', meal: MealSlot | null) => void;
     addSnack: (date: string, snack: MealSlot) => void;
     removeSnack: (date: string, snackId: string) => void;
+    removeMealFromPlan: (date: string, mealType: 'breakfast' | 'lunch' | 'dinner' | 'snacks') => void;
     clearDay: (date: string) => void;
     clearWeek: () => void;
     getDayTotals: (date: string) => { calories: number; protein: number; carbs: number; fat: number };
@@ -138,6 +139,27 @@ export const useMealPlanStore = create<MealPlanStore>()(
                     [date]: getEmptyDayPlan(date),
                 },
             })),
+
+            removeMealFromPlan: (date, mealType) => set((state) => {
+                const dayPlan = state.weeklyPlan[date];
+                if (!dayPlan) return state;
+
+                if (mealType === 'snacks') {
+                    return {
+                        weeklyPlan: {
+                            ...state.weeklyPlan,
+                            [date]: { ...dayPlan, snacks: [] },
+                        },
+                    };
+                }
+
+                return {
+                    weeklyPlan: {
+                        ...state.weeklyPlan,
+                        [date]: { ...dayPlan, [mealType]: null },
+                    },
+                };
+            }),
 
             clearWeek: () => set({ weeklyPlan: {} }),
 

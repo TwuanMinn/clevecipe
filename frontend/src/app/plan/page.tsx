@@ -1,12 +1,13 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { ResponsiveLayout } from "@/components/layout";
 import { useMealPlanStore, usePreferencesStore } from "@/lib/stores";
+import { MoreVertical, Trash2, X } from "lucide-react";
 
 // Get week days dynamically based on current date
 function getWeekDays() {
@@ -34,11 +35,27 @@ export default function PlanPage() {
     const todayDate = weekDays.find(d => d.isToday)?.fullDate || weekDays[0].fullDate;
 
     const [selectedDate, setSelectedDate] = useState(todayDate);
+    const [openMenu, setOpenMenu] = useState<string | null>(null);
     const selectedDay = weekDays.find(d => d.fullDate === selectedDate)?.date || weekDays[0].date;
 
     // Get store data
-    const { weeklyPlan, getDayTotals } = useMealPlanStore();
+    const { weeklyPlan, getDayTotals, removeMealFromPlan } = useMealPlanStore();
     const { dailyCalorieTarget } = usePreferencesStore();
+
+    // Handle meal removal
+    const handleRemoveMeal = (mealType: "breakfast" | "lunch" | "dinner" | "snacks") => {
+        removeMealFromPlan(selectedDate, mealType);
+        setOpenMenu(null);
+    };
+
+    // Close menu when clicking outside
+    useEffect(() => {
+        if (openMenu) {
+            const handleClickOutside = () => setOpenMenu(null);
+            document.addEventListener('click', handleClickOutside);
+            return () => document.removeEventListener('click', handleClickOutside);
+        }
+    }, [openMenu]);
 
     // Get the plan for the selected date
     const dayPlan = weeklyPlan[selectedDate];
@@ -215,53 +232,83 @@ export default function PlanPage() {
                             </div>
 
                             {meal.recipe ? (
-                                <Link href={`/recipe/${meal.recipe.id}`}>
-                                    <motion.div
-                                        className="relative group active:scale-[0.99] transition-transform duration-200"
-                                        whileHover={{ scale: 1.01 }}
-                                        whileTap={{ scale: 0.99 }}
-                                    >
-                                        <div className="flex items-center justify-between gap-4 rounded-[2rem] bg-white dark:bg-[#1C261E] p-3 pr-5 shadow-sm border border-slate-100 dark:border-slate-800">
-                                            <div className="relative size-20 shrink-0 rounded-full overflow-hidden">
-                                                <Image
-                                                    src={meal.recipe.image}
-                                                    alt={meal.recipe.title}
-                                                    fill
-                                                    className="object-cover"
-                                                />
-                                            </div>
-                                            <div className="flex flex-col gap-1 flex-1 min-w-0">
-                                                <p className="text-slate-900 dark:text-white text-base font-bold leading-tight truncate">
-                                                    {meal.recipe.title}
-                                                </p>
-                                                <div className="flex items-center gap-3">
-                                                    <div className="flex items-center gap-1 text-xs text-slate-500 dark:text-slate-400">
-                                                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                                                            <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13V7h1.5v5.2l4.5 2.7-.8 1.3z" />
-                                                        </svg>
-                                                        {meal.recipe.time}m
-                                                    </div>
-                                                    <div className="flex items-center gap-1 text-xs text-[#13ec37] font-bold">
-                                                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                                                            <path d="M13.5.67s.74 2.65.74 4.8c0 2.06-1.35 3.73-3.41 3.73-2.07 0-3.63-1.67-3.63-3.73l.03-.36C5.21 7.51 4 10.62 4 14c0 4.42 3.58 8 8 8s8-3.58 8-8C20 8.61 17.41 3.8 13.5.67z" />
-                                                        </svg>
-                                                        {meal.recipe.calories}
+                                <div className="relative">
+                                    <Link href={`/recipe/${meal.recipe.id}`}>
+                                        <motion.div
+                                            className="relative group active:scale-[0.99] transition-transform duration-200"
+                                            whileHover={{ scale: 1.01 }}
+                                            whileTap={{ scale: 0.99 }}
+                                        >
+                                            <div className="flex items-center justify-between gap-4 rounded-[2rem] bg-white dark:bg-[#1C261E] p-3 pr-5 shadow-sm border border-slate-100 dark:border-slate-800">
+                                                <div className="relative size-20 shrink-0 rounded-full overflow-hidden">
+                                                    <Image
+                                                        src={meal.recipe.image}
+                                                        alt={meal.recipe.title}
+                                                        fill
+                                                        className="object-cover"
+                                                    />
+                                                </div>
+                                                <div className="flex flex-col gap-1 flex-1 min-w-0">
+                                                    <p className="text-slate-900 dark:text-white text-base font-bold leading-tight truncate">
+                                                        {meal.recipe.title}
+                                                    </p>
+                                                    <div className="flex items-center gap-3">
+                                                        <div className="flex items-center gap-1 text-xs text-slate-500 dark:text-slate-400">
+                                                            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                                                <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13V7h1.5v5.2l4.5 2.7-.8 1.3z" />
+                                                            </svg>
+                                                            {meal.recipe.time}m
+                                                        </div>
+                                                        <div className="flex items-center gap-1 text-xs text-[#13ec37] font-bold">
+                                                            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                                                <path d="M13.5.67s.74 2.65.74 4.8c0 2.06-1.35 3.73-3.41 3.73-2.07 0-3.63-1.67-3.63-3.73l.03-.36C5.21 7.51 4 10.62 4 14c0 4.42 3.58 8 8 8s8-3.58 8-8C20 8.61 17.41 3.8 13.5.67z" />
+                                                            </svg>
+                                                            {meal.recipe.calories}
+                                                        </div>
                                                     </div>
                                                 </div>
+                                                <div className="w-8" /> {/* Spacer for menu button */}
                                             </div>
-                                            <div className="text-slate-300 dark:text-slate-600 cursor-grab">
-                                                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                                                    <circle cx="9" cy="5" r="1.5" />
-                                                    <circle cx="15" cy="5" r="1.5" />
-                                                    <circle cx="9" cy="12" r="1.5" />
-                                                    <circle cx="15" cy="12" r="1.5" />
-                                                    <circle cx="9" cy="19" r="1.5" />
-                                                    <circle cx="15" cy="19" r="1.5" />
-                                                </svg>
-                                            </div>
-                                        </div>
-                                    </motion.div>
-                                </Link>
+                                        </motion.div>
+                                    </Link>
+
+                                    {/* Menu Button - positioned absolutely to not interfere with Link */}
+                                    <button
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            e.stopPropagation();
+                                            setOpenMenu(openMenu === key ? null : key);
+                                        }}
+                                        className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors z-10"
+                                    >
+                                        <MoreVertical className="w-5 h-5 text-slate-400 dark:text-slate-500" />
+                                    </button>
+
+                                    {/* Dropdown Menu */}
+                                    <AnimatePresence>
+                                        {openMenu === key && (
+                                            <motion.div
+                                                initial={{ opacity: 0, scale: 0.95 }}
+                                                animate={{ opacity: 1, scale: 1 }}
+                                                exit={{ opacity: 0, scale: 0.95 }}
+                                                transition={{ duration: 0.15 }}
+                                                className="absolute right-4 top-full mt-2 bg-white dark:bg-[#1C261E] rounded-xl shadow-lg border border-slate-100 dark:border-slate-700 overflow-hidden z-20"
+                                            >
+                                                <button
+                                                    onClick={(e) => {
+                                                        e.preventDefault();
+                                                        e.stopPropagation();
+                                                        handleRemoveMeal(key as "breakfast" | "lunch" | "dinner" | "snacks");
+                                                    }}
+                                                    className="flex items-center gap-3 px-4 py-3 w-full text-left hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors text-red-600 dark:text-red-400"
+                                                >
+                                                    <Trash2 className="w-4 h-4" />
+                                                    <span className="font-medium">Remove</span>
+                                                </button>
+                                            </motion.div>
+                                        )}
+                                    </AnimatePresence>
+                                </div>
                             ) : (
                                 <motion.button
                                     onClick={() => router.push(`/generate?meal=${key}&date=${selectedDate}`)}
