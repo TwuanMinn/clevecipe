@@ -40,7 +40,7 @@ const itemVariants = {
     }
 };
 
-const menuItemVariants = {
+const _menuItemVariants = {
     hidden: { opacity: 0, x: -20 },
     visible: (index: number) => ({
         opacity: 1,
