@@ -78,6 +78,10 @@ export const staggerItem: Variants = {
     }
 };
 
+// Aliases for backward compatibility
+export const containerVariants = staggerContainer;
+export const itemVariants = staggerItem;
+
 // Card hover animation
 export const cardHover = {
     rest: { scale: 1 },

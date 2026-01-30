@@ -3,7 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, Search, Calendar, User, Sparkles, BarChart3 } from "lucide-react";
+import { Home, Search, Calendar, User, Sparkles, BarChart3, ShoppingCart } from "lucide-react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
@@ -18,6 +18,7 @@ const navItems: NavItem[] = [
     { href: "/search", label: "Search", icon: Search },
     { href: "/plan", label: "Plan", icon: Calendar },
     { href: "/insights", label: "Insights", icon: BarChart3 },
+    { href: "/shopping", label: "Shop", icon: ShoppingCart },
     { href: "/profile", label: "Profile", icon: User },
 ];
 
@@ -47,7 +48,7 @@ export function BottomNav() {
                         >
                             <motion.div
                                 className={cn(
-                                    "relative flex flex-col items-center gap-0.5 sm:gap-1 py-1.5 sm:py-2 px-2.5 sm:px-4 rounded-xl transition-colors",
+                                    "relative flex flex-col items-center gap-0.5 py-1 sm:py-1.5 px-1.5 sm:px-2.5 rounded-xl transition-colors",
                                     isActive
                                         ? "text-[#13ec37]"
                                         : "text-slate-400 hover:text-white"

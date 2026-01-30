@@ -184,7 +184,14 @@ export type IngredientUnit =
     | "slices"
     | "cloves"
     | "whole"
-    | "to taste";
+    | "to taste"
+    | "large"
+    | "medium"
+    | "small"
+    | "pinch"
+    | "can"
+    | "cans"
+    | "6oz each";
 
 export type IngredientCategory =
     | "produce"

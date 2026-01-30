@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Heart, Clock, Flame } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { useRecipeHistoryStore } from "@/lib/stores";
 
 interface Recipe {
     id: string;
@@ -40,11 +41,31 @@ export function RecipeCard({
     className,
 }: RecipeCardProps) {
     const totalTime = (recipe.prep_time || 0) + (recipe.cook_time || 0);
-    const [isFavorite, setIsFavorite] = React.useState(recipe.is_favorite);
+
+    // Use the store for favorites
+    const { isFavorite, addToFavorites, removeFromFavorites } = useRecipeHistoryStore();
+    const isRecipeFavorite = isFavorite(recipe.id);
 
     const handleFavoriteClick = (e: React.MouseEvent) => {
         e.stopPropagation();
-        setIsFavorite(!isFavorite);
+
+        if (isRecipeFavorite) {
+            removeFromFavorites(recipe.id);
+        } else {
+            addToFavorites({
+                id: recipe.id,
+                name: recipe.title,
+                image: recipe.image_url || "/images/recipes/default.png",
+                calories: recipe.nutrition?.calories || 0,
+                protein: recipe.nutrition?.protein || 0,
+                carbs: recipe.nutrition?.carbs || 0,
+                fat: recipe.nutrition?.fat || 0,
+                cookTime: totalTime,
+                savedAt: new Date().toISOString(),
+            });
+        }
+
+        // Also call the optional callback if provided
         onFavorite?.(recipe.id);
     };
 
@@ -219,7 +240,7 @@ export function RecipeCard({
                 >
                     <AnimatePresence mode="wait">
                         <motion.div
-                            key={isFavorite ? "filled" : "empty"}
+                            key={isRecipeFavorite ? "filled" : "empty"}
                             initial={{ scale: 0 }}
                             animate={{ scale: 1 }}
                             exit={{ scale: 0 }}
@@ -228,7 +249,7 @@ export function RecipeCard({
                             <Heart
                                 className={cn(
                                     "w-5 h-5 transition-colors",
-                                    isFavorite
+                                    isRecipeFavorite
                                         ? "fill-red-500 text-red-500"
                                         : "text-gray-400"
                                 )}

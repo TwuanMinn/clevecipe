@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { ArrowLeft, MessageCircle, FileText, Mail, ExternalLink, ChevronRight, Search, Star } from "lucide-react";
@@ -64,28 +64,49 @@ export default function HelpSupportPage() {
             item.answer.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
+    const [mounted, setMounted] = useState(false);
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    if (!mounted) {
+        return (
+            <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50 dark:from-[#0a0f0b] dark:via-[#0d1610] dark:to-[#0a1209] pb-24">
+                <div className="animate-pulse p-4">
+                    <div className="h-10 bg-gray-200 dark:bg-gray-700 rounded-xl mb-6" />
+                    <div className="h-12 bg-gray-200 dark:bg-gray-700 rounded-2xl mb-6" />
+                    <div className="space-y-4">
+                        <div className="h-16 bg-gray-200 dark:bg-gray-700 rounded-2xl" />
+                        <div className="h-16 bg-gray-200 dark:bg-gray-700 rounded-2xl" />
+                        <div className="h-40 bg-gray-200 dark:bg-gray-700 rounded-2xl" />
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
     return (
-        <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50 pb-24">
+        <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50 dark:from-[#0a0f0b] dark:via-[#0d1610] dark:to-[#0a1209] pb-24">
             {/* Animated background blobs */}
             <div className="fixed inset-0 overflow-hidden pointer-events-none">
-                <div className="absolute -top-40 -right-40 w-80 h-80 bg-cyan-200/30 rounded-full blur-3xl animate-pulse" />
-                <div className="absolute bottom-1/4 -left-40 w-96 h-96 bg-emerald-200/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "1s" }} />
+                <div className="absolute -top-40 -right-40 w-80 h-80 bg-cyan-200/30 dark:bg-cyan-900/20 rounded-full blur-3xl animate-pulse" />
+                <div className="absolute bottom-1/4 -left-40 w-96 h-96 bg-emerald-200/20 dark:bg-emerald-900/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "1s" }} />
             </div>
 
             {/* Header */}
             <motion.header
-                className="sticky top-0 z-20 bg-gradient-to-br from-emerald-50/90 via-green-50/90 to-teal-50/90 backdrop-blur-md px-4 py-4"
+                className="sticky top-0 z-20 bg-gradient-to-br from-emerald-50/90 via-green-50/90 to-teal-50/90 dark:from-[#0a0f0b]/90 dark:via-[#0d1610]/90 dark:to-[#0a1209]/90 backdrop-blur-md px-4 py-4"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
             >
                 <div className="flex items-center gap-4">
                     <button
                         onClick={() => router.back()}
-                        className="p-2 rounded-xl bg-white/80 shadow-sm hover:bg-white transition-colors"
+                        className="p-2 rounded-xl bg-white/80 dark:bg-white/10 shadow-sm hover:bg-white dark:hover:bg-white/20 transition-colors"
                     >
-                        <ArrowLeft className="w-5 h-5 text-gray-600" />
+                        <ArrowLeft className="w-5 h-5 text-gray-600 dark:text-gray-300" />
                     </button>
-                    <h2 className="text-lg font-bold text-gray-900">Help & Support</h2>
+                    <h2 className="text-lg font-bold text-gray-900 dark:text-white">Help &amp; Support</h2>
                 </div>
             </motion.header>
 
@@ -102,7 +123,7 @@ export default function HelpSupportPage() {
                         placeholder="Search help articles..."
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
-                        className="w-full pl-12 pr-4 py-4 bg-white/80 backdrop-blur-sm rounded-2xl shadow-sm border border-white/50 outline-none focus:ring-2 focus:ring-green-500/20 transition-all"
+                        className="w-full pl-12 pr-4 py-4 bg-white/80 dark:bg-white/5 backdrop-blur-sm rounded-2xl shadow-sm border border-white/50 dark:border-white/10 outline-none focus:ring-2 focus:ring-green-500/20 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 transition-all"
                     />
                 </motion.div>
 
@@ -112,30 +133,30 @@ export default function HelpSupportPage() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.1 }}
                 >
-                    <h3 className="text-sm font-bold text-gray-500 uppercase tracking-wider mb-3 px-1">Get Help</h3>
-                    <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-white/50 overflow-hidden">
+                    <h3 className="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3 px-1">Get Help</h3>
+                    <div className="bg-white/80 dark:bg-white/5 backdrop-blur-sm rounded-2xl shadow-lg border border-white/50 dark:border-white/10 overflow-hidden">
                         {supportOptions.map((option) => {
                             const Icon = option.icon;
                             return (
                                 <button
                                     key={option.title}
-                                    className="w-full flex items-center gap-4 p-4 border-b border-gray-100/50 last:border-b-0 hover:bg-gray-50/50 transition-colors"
+                                    className="w-full flex items-center gap-4 p-4 border-b border-gray-100/50 dark:border-gray-800/50 last:border-b-0 hover:bg-gray-50/50 dark:hover:bg-white/5 transition-colors"
                                 >
                                     <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${option.color}`}>
                                         <Icon className="w-5 h-5" />
                                     </div>
                                     <div className="flex-1 text-left">
                                         <div className="flex items-center gap-2">
-                                            <h4 className="font-semibold text-gray-800">{option.title}</h4>
+                                            <h4 className="font-semibold text-gray-800 dark:text-gray-100">{option.title}</h4>
                                             {option.badge && (
                                                 <span className={`px-2 py-0.5 text-[10px] font-bold rounded-full text-white ${option.badgeColor}`}>
                                                     {option.badge}
                                                 </span>
                                             )}
                                         </div>
-                                        <p className="text-xs text-gray-500">{option.subtitle}</p>
+                                        <p className="text-xs text-gray-500 dark:text-gray-400">{option.subtitle}</p>
                                     </div>
-                                    <ExternalLink className="w-4 h-4 text-gray-400" />
+                                    <ExternalLink className="w-4 h-4 text-gray-400 dark:text-gray-500" />
                                 </button>
                             );
                         })}
@@ -148,14 +169,14 @@ export default function HelpSupportPage() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.2 }}
                 >
-                    <h3 className="text-sm font-bold text-gray-500 uppercase tracking-wider mb-3 px-1">
+                    <h3 className="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3 px-1">
                         Frequently Asked Questions
                     </h3>
                     <div className="space-y-3">
                         {filteredFaqs.map((faq, index) => (
                             <motion.div
                                 key={index}
-                                className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-sm border border-white/50 overflow-hidden"
+                                className="bg-white/80 dark:bg-white/5 backdrop-blur-sm rounded-2xl shadow-sm border border-white/50 dark:border-white/10 overflow-hidden"
                                 initial={{ opacity: 0, y: 10 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.2 + index * 0.05 }}
@@ -164,12 +185,12 @@ export default function HelpSupportPage() {
                                     onClick={() => setExpandedFaq(expandedFaq === index ? null : index)}
                                     className="w-full flex items-center justify-between p-4"
                                 >
-                                    <span className="font-semibold text-gray-800 text-left">{faq.question}</span>
+                                    <span className="font-semibold text-gray-800 dark:text-gray-100 text-left">{faq.question}</span>
                                     <motion.div
                                         animate={{ rotate: expandedFaq === index ? 90 : 0 }}
                                         transition={{ duration: 0.2 }}
                                     >
-                                        <ChevronRight className="w-5 h-5 text-gray-400" />
+                                        <ChevronRight className="w-5 h-5 text-gray-400 dark:text-gray-500" />
                                     </motion.div>
                                 </button>
                                 <motion.div
@@ -181,7 +202,7 @@ export default function HelpSupportPage() {
                                     transition={{ duration: 0.3 }}
                                     className="overflow-hidden"
                                 >
-                                    <div className="px-4 pb-4 text-sm text-gray-600 leading-relaxed">
+                                    <div className="px-4 pb-4 text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
                                         {faq.answer}
                                     </div>
                                 </motion.div>

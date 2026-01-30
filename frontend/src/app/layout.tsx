@@ -70,8 +70,25 @@ export default function RootLayout({
 }: {
     children: React.ReactNode;
 }) {
+    // Script to run before React hydrates to prevent flash of wrong theme
+    const themeScript = `
+        (function() {
+            try {
+                var theme = localStorage.getItem('clevcipe-theme');
+                if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                    document.documentElement.classList.add('dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                }
+            } catch (e) {}
+        })();
+    `;
+
     return (
         <html lang="en" suppressHydrationWarning>
+            <head>
+                <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+            </head>
             <body
                 className={`${inter.variable} ${poppins.variable} font-sans antialiased`}
             >

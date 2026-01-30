@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { ArrowLeft, Bell, MessageSquare, Mail, Smartphone, Volume2 } from "lucide-react";
@@ -69,28 +69,48 @@ export default function NotificationsPage() {
         );
     };
 
+    const [mounted, setMounted] = useState(false);
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    if (!mounted) {
+        return (
+            <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50 dark:from-[#0a0f0b] dark:via-[#0d1610] dark:to-[#0a1209] pb-24">
+                <div className="animate-pulse p-4">
+                    <div className="h-10 bg-gray-200 dark:bg-gray-700 rounded-xl mb-6" />
+                    <div className="space-y-4">
+                        <div className="h-16 bg-gray-200 dark:bg-gray-700 rounded-2xl" />
+                        <div className="h-16 bg-gray-200 dark:bg-gray-700 rounded-2xl" />
+                        <div className="h-16 bg-gray-200 dark:bg-gray-700 rounded-2xl" />
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
     return (
-        <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50 pb-24">
+        <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50 dark:from-[#0a0f0b] dark:via-[#0d1610] dark:to-[#0a1209] pb-24">
             {/* Animated background blobs */}
             <div className="fixed inset-0 overflow-hidden pointer-events-none">
-                <div className="absolute -top-40 -right-40 w-80 h-80 bg-orange-200/30 rounded-full blur-3xl animate-pulse" />
-                <div className="absolute top-1/2 -left-40 w-96 h-96 bg-emerald-200/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "1s" }} />
+                <div className="absolute -top-40 -right-40 w-80 h-80 bg-orange-200/30 dark:bg-orange-900/20 rounded-full blur-3xl animate-pulse" />
+                <div className="absolute top-1/2 -left-40 w-96 h-96 bg-emerald-200/20 dark:bg-emerald-900/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "1s" }} />
             </div>
 
             {/* Header */}
             <motion.header
-                className="sticky top-0 z-20 bg-gradient-to-br from-emerald-50/90 via-green-50/90 to-teal-50/90 backdrop-blur-md px-4 py-4"
+                className="sticky top-0 z-20 bg-gradient-to-br from-emerald-50/90 via-green-50/90 to-teal-50/90 dark:from-[#0a0f0b]/90 dark:via-[#0d1610]/90 dark:to-[#0a1209]/90 backdrop-blur-md px-4 py-4"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
             >
                 <div className="flex items-center gap-4">
                     <button
                         onClick={() => router.back()}
-                        className="p-2 rounded-xl bg-white/80 shadow-sm hover:bg-white transition-colors"
+                        className="p-2 rounded-xl bg-white/80 dark:bg-white/10 shadow-sm hover:bg-white dark:hover:bg-white/20 transition-colors"
                     >
-                        <ArrowLeft className="w-5 h-5 text-gray-600" />
+                        <ArrowLeft className="w-5 h-5 text-gray-600 dark:text-gray-300" />
                     </button>
-                    <h2 className="text-lg font-bold text-gray-900">Notifications</h2>
+                    <h2 className="text-lg font-bold text-gray-900 dark:text-white">Notifications</h2>
                 </div>
             </motion.header>
 
@@ -114,7 +134,7 @@ export default function NotificationsPage() {
 
                 {/* Notification Settings */}
                 <motion.div
-                    className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-white/50 overflow-hidden"
+                    className="bg-white/80 dark:bg-white/5 backdrop-blur-sm rounded-2xl shadow-lg border border-white/50 dark:border-white/10 overflow-hidden"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.1 }}
@@ -124,7 +144,7 @@ export default function NotificationsPage() {
                         return (
                             <motion.div
                                 key={setting.id}
-                                className="flex items-center gap-4 p-4 border-b border-gray-100/50 last:border-b-0"
+                                className="flex items-center gap-4 p-4 border-b border-gray-100/50 dark:border-gray-800/50 last:border-b-0"
                                 initial={{ opacity: 0, x: -20 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ delay: 0.1 + index * 0.05 }}
@@ -133,14 +153,14 @@ export default function NotificationsPage() {
                                     <Icon className="w-5 h-5" />
                                 </div>
                                 <div className="flex-1">
-                                    <h4 className="font-semibold text-gray-800">{setting.title}</h4>
-                                    <p className="text-xs text-gray-500">{setting.description}</p>
+                                    <h4 className="font-semibold text-gray-800 dark:text-gray-100">{setting.title}</h4>
+                                    <p className="text-xs text-gray-500 dark:text-gray-400">{setting.description}</p>
                                 </div>
                                 <button
                                     onClick={() => toggleSetting(setting.id)}
                                     className={`relative w-14 h-8 rounded-full transition-all shadow-inner ${setting.enabled
-                                            ? "bg-gradient-to-r from-green-500 to-emerald-500"
-                                            : "bg-gray-200"
+                                        ? "bg-gradient-to-r from-green-500 to-emerald-500"
+                                        : "bg-gray-200"
                                         }`}
                                 >
                                     <motion.div
@@ -156,18 +176,18 @@ export default function NotificationsPage() {
 
                 {/* Quiet Hours */}
                 <motion.div
-                    className="bg-white/80 backdrop-blur-sm rounded-2xl p-4 shadow-lg border border-white/50"
+                    className="bg-white/80 dark:bg-white/5 backdrop-blur-sm rounded-2xl p-4 shadow-lg border border-white/50 dark:border-white/10"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3 }}
                 >
-                    <h3 className="font-bold text-gray-900 mb-3">Quiet Hours</h3>
+                    <h3 className="font-bold text-gray-900 dark:text-white mb-3">Quiet Hours</h3>
                     <div className="flex items-center justify-between">
                         <div>
-                            <p className="text-sm text-gray-600">Pause notifications</p>
-                            <p className="text-xs text-gray-400">10:00 PM - 7:00 AM</p>
+                            <p className="text-sm text-gray-600 dark:text-gray-300">Pause notifications</p>
+                            <p className="text-xs text-gray-400 dark:text-gray-500">10:00 PM - 7:00 AM</p>
                         </div>
-                        <button className="px-4 py-2 bg-gray-100 rounded-xl text-sm font-semibold text-gray-600 hover:bg-gray-200 transition-colors">
+                        <button className="px-4 py-2 bg-gray-100 dark:bg-white/10 rounded-xl text-sm font-semibold text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-white/20 transition-colors">
                             Edit
                         </button>
                     </div>

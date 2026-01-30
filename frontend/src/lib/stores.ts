@@ -315,6 +315,8 @@ interface NutritionLogStore {
     getEntriesForDate: (date: string) => NutritionEntry[];
     getDailyTotals: (date: string) => { calories: number; protein: number; carbs: number; fat: number };
     clearDate: (date: string) => void;
+    getWeeklyData: (calorieTarget: number) => { day: string; value: number; isToday: boolean; date: string }[];
+    getWeeklyAdherence: (calorieTarget: number) => number;
 }
 
 export const useNutritionLogStore = create<NutritionLogStore>()(
@@ -352,6 +354,45 @@ export const useNutritionLogStore = create<NutritionLogStore>()(
             clearDate: (date) => set((state) => ({
                 entries: state.entries.filter(e => e.date !== date),
             })),
+
+            getWeeklyData: (calorieTarget) => {
+                const today = new Date();
+                const dayNames = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+                const weekData = [];
+
+                // Get the start of the week (Sunday)
+                const startOfWeek = new Date(today);
+                startOfWeek.setDate(today.getDate() - today.getDay());
+
+                for (let i = 0; i < 7; i++) {
+                    const date = new Date(startOfWeek);
+                    date.setDate(startOfWeek.getDate() + i);
+                    const dateStr = date.toISOString().split('T')[0];
+                    const totals = get().getDailyTotals(dateStr);
+
+                    // Calculate adherence as percentage of daily target achieved (max 100%)
+                    const adherence = calorieTarget > 0
+                        ? Math.min(Math.round((totals.calories / calorieTarget) * 100), 100)
+                        : 0;
+
+                    weekData.push({
+                        day: dayNames[date.getDay()],
+                        value: adherence,
+                        isToday: dateStr === today.toISOString().split('T')[0],
+                        date: dateStr,
+                    });
+                }
+
+                return weekData;
+            },
+
+            getWeeklyAdherence: (calorieTarget) => {
+                const weekData = get().getWeeklyData(calorieTarget);
+                const daysWithData = weekData.filter(d => d.value > 0);
+                if (daysWithData.length === 0) return 0;
+                const total = daysWithData.reduce((sum, d) => sum + d.value, 0);
+                return Math.round(total / daysWithData.length);
+            },
         }),
         {
             name: 'clevcipe-nutrition-log',

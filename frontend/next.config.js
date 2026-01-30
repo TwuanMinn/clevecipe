@@ -3,7 +3,7 @@ const nextConfig = {
     reactStrictMode: true,
     images: {
         domains: [
-            // Add image domains here
+            "images.unsplash.com",
         ],
     },
     // Add other config options as needed
