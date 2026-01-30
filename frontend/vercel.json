@@ -4,24 +4,6 @@
     "devCommand": "npm run dev",
     "installCommand": "npm install",
     "framework": "nextjs",
-    "env": {
-        "NEXT_PUBLIC_SUPABASE_URL": {
-            "type": "plain",
-            "description": "Your Supabase project URL from https://supabase.com/dashboard/project/YOUR_PROJECT/settings/api"
-        },
-        "NEXT_PUBLIC_SUPABASE_ANON_KEY": {
-            "type": "plain",
-            "description": "Your Supabase anonymous key from https://supabase.com/dashboard/project/YOUR_PROJECT/settings/api"
-        },
-        "OPENAI_API_KEY": {
-            "type": "secret",
-            "description": "Your OpenAI API key from https://platform.openai.com/api-keys (enables AI recipe generation)"
-        },
-        "NEXT_PUBLIC_APP_URL": {
-            "type": "plain",
-            "description": "Your production URL (e.g., https://clevcipe.vercel.app)"
-        }
-    },
     "build": {
         "env": {
             "NEXT_TELEMETRY_DISABLED": "1"
