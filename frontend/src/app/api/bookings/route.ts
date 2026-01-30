@@ -6,7 +6,7 @@ export async function GET() {
     return NextResponse.json({ message: 'Bookings endpoint' });
 }
 
-export async function POST(request: Request) {
+export async function POST(_request: Request) {
     // TODO: Implement bookings logic
     return NextResponse.json({ message: 'Bookings endpoint' });
 }

@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useMemo } from "react";
-import { Search, Filter, X } from "lucide-react";
+import { useState } from "react";
+import { Search, X } from "lucide-react";
 import { ResponsiveLayout } from "@/components/layout";
 import {
     RecipeCard,
@@ -9,7 +9,7 @@ import {
     EmptyState,
     CookingLoader,
 } from "@/components/ui";
-import type { Recipe, RecipeFilters, CuisineType, Difficulty } from "@/types";
+import type { Recipe, CuisineType, Difficulty } from "@/types";
 import { demoRecipes } from "@/data/homepage-data";
 
 // Transform homepage data to full Recipe type for search functionality
@@ -47,8 +47,7 @@ export default function SearchPage() {
     const [query, setQuery] = useState("");
     const [selectedCategory, setSelectedCategory] = useState("all");
     const [isLoading, setIsLoading] = useState(false);
-    const [showFilters, setShowFilters] = useState(false);
-    const [filters, setFilters] = useState<RecipeFilters>({});
+
 
     // Filter recipes based on search and category
     const filteredRecipes = allRecipes.filter((recipe) => {

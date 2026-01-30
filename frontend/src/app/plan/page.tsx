@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { ResponsiveLayout } from "@/components/layout";
 import { useMealPlanStore, usePreferencesStore } from "@/lib/stores";
-import { MoreVertical, Trash2, X } from "lucide-react";
+import { MoreVertical, Trash2 } from "lucide-react";
 
 // Get week days dynamically based on current date
 function getWeekDays() {
@@ -36,7 +36,7 @@ export default function PlanPage() {
 
     const [selectedDate, setSelectedDate] = useState(todayDate);
     const [openMenu, setOpenMenu] = useState<string | null>(null);
-    const selectedDay = weekDays.find(d => d.fullDate === selectedDate)?.date || weekDays[0].date;
+    const _selectedDay = weekDays.find(d => d.fullDate === selectedDate)?.date || weekDays[0].date;
 
     // Get store data
     const { weeklyPlan, getDayTotals, removeMealFromPlan } = useMealPlanStore();

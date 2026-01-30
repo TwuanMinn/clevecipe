@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { motion } from "framer-motion";
 import { ArrowLeft, Camera, Check, User, Mail, FileText, Calendar } from "lucide-react";
 import { BottomNav } from "@/components/ui";
 import { useAuth } from "@/lib/auth-context";

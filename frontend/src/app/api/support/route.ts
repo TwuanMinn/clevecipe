@@ -6,7 +6,7 @@ export async function GET() {
     return NextResponse.json({ message: 'Support endpoint' });
 }
 
-export async function POST(request: Request) {
+export async function POST(_request: Request) {
     // TODO: Implement support logic
     return NextResponse.json({ message: 'Support endpoint' });
 }

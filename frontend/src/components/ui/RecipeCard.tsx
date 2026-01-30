@@ -271,7 +271,7 @@ interface MiniRecipeCardProps {
 
 export function MiniRecipeCard({
     recipe,
-    onRemove,
+    onRemove: _onRemove,
     className,
 }: MiniRecipeCardProps) {
     const totalTime = (recipe.prep_time || 0) + (recipe.cook_time || 0);

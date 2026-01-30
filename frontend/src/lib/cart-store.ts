@@ -11,7 +11,7 @@ interface CartItem {
     quantity: number;
 }
 
-interface CartStore {
+interface _CartStore {
     items: CartItem[];
     addItem: (item: CartItem) => void;
     removeItem: (id: string) => void;
@@ -25,9 +25,9 @@ export const useCart = () => {
     // Placeholder - implement with zustand or context
     return {
         items: [] as CartItem[],
-        addItem: (item: CartItem) => { },
-        removeItem: (id: string) => { },
-        updateQuantity: (id: string, quantity: number) => { },
+        addItem: (_item: CartItem) => { },
+        removeItem: (_id: string) => { },
+        updateQuantity: (_id: string, _quantity: number) => { },
         clearCart: () => { },
         total: 0,
     };

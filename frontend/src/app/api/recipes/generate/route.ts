@@ -766,7 +766,7 @@ function getMockRecipes(body: RecipeGenerationRequest) {
     const selected = shuffled.slice(0, 3);
 
     // Add match percentages
-    return selected.map((recipe, index) => ({
+    return selected.map((recipe, _index) => ({
         ...recipe,
         match_percentage: Math.floor(85 + Math.random() * 14), // 85-99%
     }));

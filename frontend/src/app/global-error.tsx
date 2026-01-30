@@ -1,8 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { ServerCrash, RefreshCw, Home } from "lucide-react";
-import Link from "next/link";
 
 export default function GlobalError({
     error,

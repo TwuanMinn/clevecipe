@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { ArrowRight, ArrowLeft, Check, ChefHat, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Button, Badge } from "@/components/ui";
+import { Button } from "@/components/ui";
 import { ResponsiveLayout } from "@/components/layout";
 import { usePreferencesStore } from "@/lib/stores";
 import type {
@@ -211,7 +211,7 @@ export default function OnboardingPage() {
                                     Any dietary restrictions? 🥗
                                 </h1>
                                 <p className="text-muted-foreground mt-2">
-                                    Select all that apply. We'll make sure your recipes are safe and delicious.
+                                    Select all that apply. We&apos;ll make sure your recipes are safe and delicious.
                                 </p>
                             </div>
 

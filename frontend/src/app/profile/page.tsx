@@ -14,7 +14,6 @@ import {
     Bell,
     HelpCircle,
     Moon,
-    Sun,
 } from "lucide-react";
 import { NutritionRing } from "@/components/ui";
 import { ResponsiveLayout } from "@/components/layout";
@@ -59,7 +58,7 @@ export default function ProfilePage() {
     const router = useRouter();
     const { theme, toggleTheme } = useTheme();
     const isDarkMode = theme === "dark";
-    const { user: authUser, profile, signOut, loading } = useAuth();
+    const { user: authUser, profile, signOut, loading: _loading } = useAuth();
     const { dailyCalorieTarget } = usePreferencesStore();
     const { favorites } = useRecipeHistoryStore();
 
@@ -362,7 +361,7 @@ export default function ProfilePage() {
                         className="bg-white/80 dark:bg-white/5 backdrop-blur-sm rounded-2xl shadow-lg border border-white/50 dark:border-white/10 overflow-hidden"
                         variants={itemVariants}
                     >
-                        {menuItems.map((item, index) => {
+                        {menuItems.map((item, _index) => {
                             const Icon = item.icon;
                             return (
                                 <Link

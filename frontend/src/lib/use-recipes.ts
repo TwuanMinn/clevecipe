@@ -9,7 +9,6 @@ import {
     searchRecipes,
     fetchRecipesByCategory,
     Recipe,
-    RecipeAPIError
 } from './recipe-api';
 import { isSupabaseConfigured } from './supabase';
 

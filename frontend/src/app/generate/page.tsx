@@ -2,7 +2,7 @@
 
 import { useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Sparkles, Wand2, RefreshCw, Users, Flame, Leaf, ChevronDown, ChevronUp, Check } from "lucide-react";
+import { Sparkles, Wand2, RefreshCw, Users, Flame, Leaf, ChevronDown, ChevronUp } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ResponsiveLayout } from "@/components/layout";
 import {
@@ -89,7 +89,7 @@ function GenerateContent() {
     const [isGenerating, setIsGenerating] = useState(false);
     const [generatedRecipes, setGeneratedRecipes] = useState<Recipe[]>([]);
     const [showResults, setShowResults] = useState(false);
-    const [addedRecipeId, setAddedRecipeId] = useState<string | null>(null);
+    const [, setAddedRecipeId] = useState<string | null>(null);
 
     const toggleDietary = (id: string) => {
         setSelectedDietary(prev =>
@@ -364,7 +364,7 @@ function GenerateContent() {
                                 className="bg-gradient-to-r from-emerald-50 to-green-50 dark:from-emerald-900/20 dark:to-green-900/20 rounded-2xl p-4 border border-emerald-200 dark:border-emerald-800"
                             >
                                 <p className="text-sm text-emerald-800 dark:text-emerald-300 font-medium">
-                                    ✨ You'll get: {selectedMealType !== "any" ? selectedMealType : ""} {selectedCuisine !== "any" ? selectedCuisine + " recipes" : "recipes"}
+                                    ✨ You&apos;ll get: {selectedMealType !== "any" ? selectedMealType : ""} {selectedCuisine !== "any" ? selectedCuisine + " recipes" : "recipes"}
                                     {selectedCookingTime !== "any" && ` ready in ${selectedCookingTime} min`}
                                     {selectedDietary.length > 0 && ` (${selectedDietary.join(", ")})`}
                                     {` for ${servings} ${servings === 1 ? "person" : "people"}`}
@@ -397,7 +397,7 @@ function GenerateContent() {
                         {/* Results */}
                         <div className="flex items-center justify-between">
                             <h2 className="text-xl font-bold text-slate-900 dark:text-white">
-                                Here's what we created! ✨
+                                Here&apos;s what we created! ✨
                             </h2>
                             <button
                                 onClick={generateRecipes}

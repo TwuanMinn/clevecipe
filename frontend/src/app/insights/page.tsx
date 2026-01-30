@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
-import { TrendingUp, TrendingDown, Plus, ChevronRight, Minus } from "lucide-react";
+import { TrendingUp, Plus, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { ResponsiveLayout } from "@/components/layout";
 import { useNutritionLogStore, usePreferencesStore } from "@/lib/stores";
@@ -63,7 +63,7 @@ export default function InsightsPage() {
     const proteinAngle = totalMacros > 0 ? (todayTotals.protein / totalMacros) * 100 : 33;
     const carbsAngle = totalMacros > 0 ? (todayTotals.carbs / totalMacros) * 100 : 33;
     const fatAngle = totalMacros > 0 ? (todayTotals.fat / totalMacros) * 100 : 33;
-    const emptyAngle = 100 - proteinAngle - carbsAngle - fatAngle;
+    const _emptyAngle = 100 - proteinAngle - carbsAngle - fatAngle;
 
     const hasData = todayTotals.calories > 0 || weeklyAdherence > 0;
 

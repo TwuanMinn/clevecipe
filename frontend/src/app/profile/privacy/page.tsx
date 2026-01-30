@@ -180,7 +180,7 @@ export default function PrivacyPage() {
                 >
                     <h3 className="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3 px-1">Security</h3>
                     <div className="bg-white/80 dark:bg-white/5 backdrop-blur-sm rounded-2xl shadow-lg border border-white/50 dark:border-white/10 overflow-hidden">
-                        {securityOptions.map((option, index) => {
+                        {securityOptions.map((option, _index) => {
                             const Icon = option.icon;
                             return (
                                 <div

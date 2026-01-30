@@ -1,0 +1,6 @@
+
+C:\Users\Admin\Downloads\IT career projects\Clevcipe\frontend\src\lib\cart-store.ts
+  14:11  error  'CartStore' is defined but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+
+Γ£û 1 problem (1 error, 0 warnings)
+

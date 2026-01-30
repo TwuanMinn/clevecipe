@@ -125,7 +125,7 @@ export default function SettingsPage() {
                             {group.title}
                         </h3>
                         <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-white/50 overflow-hidden">
-                            {group.items.map((item, itemIndex) => {
+                            {group.items.map((item, _itemIndex) => {
                                 const Icon = item.icon;
                                 return (
                                     <div
