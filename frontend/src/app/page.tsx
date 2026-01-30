@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { ResponsiveLayout } from "@/components/layout";
@@ -21,6 +21,55 @@ import { Calendar, Plus, Coffee, Sun, Moon, Cookie, ChevronRight } from "lucide-
 export default function HomePage() {
     const [selectedCategory, setSelectedCategory] = useState("for-you");
     const { recipes, isLoading, error, isDemo } = useRecipes();
+
+    // Filter recipes based on selected category
+    const filteredRecipes = useMemo(() => {
+        if (!recipes || recipes.length === 0) return [];
+
+        switch (selectedCategory) {
+            case "for-you":
+                // Show all recipes, sorted by match percentage
+                return [...recipes].sort((a, b) => (b.match_percentage || 0) - (a.match_percentage || 0));
+
+            case "breakfast":
+                // Filter by breakfast-related tags or title
+                return recipes.filter(recipe => {
+                    const tags = recipe.dietary_tags || [];
+                    const title = recipe.title.toLowerCase();
+                    return tags.some(tag => tag.toLowerCase().includes("breakfast")) ||
+                        title.includes("toast") ||
+                        title.includes("oats") ||
+                        title.includes("smoothie") ||
+                        title.includes("egg") ||
+                        title.includes("pancake") ||
+                        title.includes("waffle");
+                });
+
+            case "high-protein":
+                // Filter by high-protein tag
+                return recipes.filter(recipe => {
+                    const tags = recipe.dietary_tags || [];
+                    return tags.some(tag => tag.toLowerCase().includes("high-protein") || tag.toLowerCase().includes("protein"));
+                });
+
+            case "under-30m":
+                // Filter by total time under 30 minutes
+                return recipes.filter(recipe => {
+                    const totalTime = (recipe.prep_time || 0) + (recipe.cook_time || 0);
+                    return totalTime <= 30;
+                });
+
+            case "vegan":
+                // Filter by vegan tag
+                return recipes.filter(recipe => {
+                    const tags = recipe.dietary_tags || [];
+                    return tags.some(tag => tag.toLowerCase().includes("vegan"));
+                });
+
+            default:
+                return recipes;
+        }
+    }, [recipes, selectedCategory]);
 
     // Get today's meal plan
     const today = new Date().toISOString().split("T")[0];
@@ -229,27 +278,44 @@ export default function HomePage() {
 
                 {/* Recipe Feed Grid - Responsive columns */}
                 {!isLoading && !error && (
-                    <motion.div
-                        className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-6 px-4 lg:px-0 pt-2 pb-4"
-                        variants={containerVariants}
-                        initial="hidden"
-                        animate="visible"
-                    >
-                        {recipes.map((recipe) => (
-                            <RecipeCard
-                                key={recipe.id}
-                                recipe={{
-                                    id: recipe.id,
-                                    title: recipe.title,
-                                    image_url: recipe.image_url || '/images/recipes/placeholder.png',
-                                    prep_time: recipe.prep_time || 0,
-                                    calories: recipe.nutrition?.calories || 0,
-                                    match_percentage: recipe.match_percentage || 0,
-                                    is_primary_match: (recipe.match_percentage || 0) >= 95,
-                                }}
-                            />
-                        ))}
-                    </motion.div>
+                    <>
+                        {filteredRecipes.length > 0 ? (
+                            <motion.div
+                                className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-6 px-4 lg:px-0 pt-2 pb-4"
+                                variants={containerVariants}
+                                initial="hidden"
+                                animate="visible"
+                                key={selectedCategory} // Re-animate when category changes
+                            >
+                                {filteredRecipes.map((recipe) => (
+                                    <RecipeCard
+                                        key={recipe.id}
+                                        recipe={{
+                                            id: recipe.id,
+                                            title: recipe.title,
+                                            image_url: recipe.image_url || '/images/recipes/placeholder.png',
+                                            prep_time: recipe.prep_time || 0,
+                                            calories: recipe.nutrition?.calories || 0,
+                                            match_percentage: recipe.match_percentage || 0,
+                                            is_primary_match: (recipe.match_percentage || 0) >= 95,
+                                        }}
+                                    />
+                                ))}
+                            </motion.div>
+                        ) : (
+                            <div className="flex flex-col items-center justify-center py-12 px-4">
+                                <div className="w-16 h-16 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center mb-4">
+                                    <span className="text-3xl">🍽️</span>
+                                </div>
+                                <p className="text-slate-600 dark:text-slate-400 text-center font-medium">
+                                    No recipes found for this filter
+                                </p>
+                                <p className="text-slate-400 dark:text-slate-500 text-sm text-center mt-1">
+                                    Try selecting a different category
+                                </p>
+                            </div>
+                        )}
+                    </>
                 )}
             </div>
         </ResponsiveLayout>
