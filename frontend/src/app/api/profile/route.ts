@@ -1,11 +1,22 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createClient } from "@supabase/supabase-js";
+import { createClient, SupabaseClient } from "@supabase/supabase-js";
 
-// Initialize Supabase client
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
-const supabaseServiceKey = process.env.SUPABASE_SERVICE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
+// Lazy-initialize Supabase client to avoid build errors when env vars aren't set
+let supabase: SupabaseClient | null = null;
 
-const supabase = createClient(supabaseUrl, supabaseServiceKey);
+function getSupabaseClient(): SupabaseClient {
+    if (!supabase) {
+        const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+        const supabaseServiceKey = process.env.SUPABASE_SERVICE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+        if (!supabaseUrl || !supabaseServiceKey) {
+            throw new Error("Supabase configuration missing");
+        }
+
+        supabase = createClient(supabaseUrl, supabaseServiceKey);
+    }
+    return supabase;
+}
 
 export async function GET(request: NextRequest) {
     try {
@@ -21,7 +32,7 @@ export async function GET(request: NextRequest) {
         const token = authHeader.substring(7);
 
         // Verify the token and get user
-        const { data: { user }, error: authError } = await supabase.auth.getUser(token);
+        const { data: { user }, error: authError } = await getSupabaseClient().auth.getUser(token);
 
         if (authError || !user) {
             return NextResponse.json(
@@ -31,7 +42,7 @@ export async function GET(request: NextRequest) {
         }
 
         // Fetch user profile
-        const { data: profile, error: profileError } = await supabase
+        const { data: profile, error: profileError } = await getSupabaseClient()
             .from("profiles")
             .select("*")
             .eq("id", user.id)
@@ -68,7 +79,7 @@ export async function PUT(request: NextRequest) {
         }
 
         const token = authHeader.substring(7);
-        const { data: { user }, error: authError } = await supabase.auth.getUser(token);
+        const { data: { user }, error: authError } = await getSupabaseClient().auth.getUser(token);
 
         if (authError || !user) {
             return NextResponse.json(
@@ -104,7 +115,7 @@ export async function PUT(request: NextRequest) {
         updateData.updated_at = new Date().toISOString();
 
         // Update profile
-        const { data: profile, error: updateError } = await supabase
+        const { data: profile, error: updateError } = await getSupabaseClient()
             .from("profiles")
             .upsert({
                 id: user.id,
